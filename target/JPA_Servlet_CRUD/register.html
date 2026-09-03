@@ -2,18 +2,300 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Đăng ký</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản</title>
+    <!-- Font Awesome cho icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 45px 40px;
+            width: 100%;
+            max-width: 460px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .register-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+        }
+
+        .register-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .register-header .icon {
+            font-size: 48px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .register-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .register-header p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .form-group label .required {
+            color: #e74c3c;
+            margin-left: 2px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 13px 16px 13px 46px;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #667eea;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+        }
+
+        .input-wrapper input:focus + .input-icon {
+            color: #667eea;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            margin-top: 6px;
+        }
+
+        .btn-register:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-register:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .login-footer p {
+            color: #888;
+            font-size: 14px;
+        }
+
+        .login-footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .login-footer a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        /* Alert message */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .alert-danger {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fca5a5;
+            display: block;
+        }
+
+        .alert-success {
+            background: #dcfce7;
+            color: #16a34a;
+            border: 1px solid #86efac;
+            display: block;
+        }
+
+        /* Responsive cho mobile */
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 30px 20px;
+            }
+            .register-header h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2>Đăng ký tài khoản</h2>
-    <form action="Register" method="post">
-        Họ và tên: <input type="text" name="fullname"><br>
-        Tên đăng nhập: <input type="text" name="username"><br>
-        Email: <input type="email" name="email"><br>
-        Số điện thoại: <input type="text" name="phone"><br>
-        Mật khẩu: <input type="password" name="password"><br>
-        <input type="submit" value="Đăng ký">
-    </form>
-    <a href="Login.html">Đã có tài khoản? Đăng nhập</a>
+
+    <div class="register-container">
+        <!-- Header -->
+        <div class="register-header">
+            <div class="icon"><i class="fas fa-user-plus"></i></div>
+            <h2>Đăng ký tài khoản</h2>
+            <p>Điền thông tin để bắt đầu trải nghiệm</p>
+        </div>
+
+        <!-- Alert (hiển thị lỗi từ Servlet) -->
+        <div id="alert" class="alert alert-danger" style="display: none;"></div>
+
+        <!-- Form đăng ký -->
+        <form action="Register" method="post" id="registerForm">
+
+            <!-- Họ và tên -->
+            <div class="form-group">
+                <label>Họ và tên <span class="required">*</span></label>
+                <div class="input-wrapper">
+                    <span class="input-icon"><i class="fas fa-user"></i></span>
+                    <input type="text" name="fullname" placeholder="Nhập họ và tên" required>
+                </div>
+            </div>
+
+            <!-- Tên đăng nhập -->
+            <div class="form-group">
+                <label>Tên đăng nhập <span class="required">*</span></label>
+                <div class="input-wrapper">
+                    <span class="input-icon"><i class="fas fa-user-tag"></i></span>
+                    <input type="text" name="username" placeholder="Nhập tên đăng nhập" required>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label>Email <span class="required">*</span></label>
+                <div class="input-wrapper">
+                    <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                    <input type="email" name="email" placeholder="Nhập email" required>
+                </div>
+            </div>
+
+            <!-- Số điện thoại -->
+            <div class="form-group">
+                <label>Số điện thoại</label>
+                <div class="input-wrapper">
+                    <span class="input-icon"><i class="fas fa-phone"></i></span>
+                    <input type="text" name="phone" placeholder="Nhập số điện thoại (không bắt buộc)">
+                </div>
+            </div>
+
+            <!-- Mật khẩu -->
+            <div class="form-group">
+                <label>Mật khẩu <span class="required">*</span></label>
+                <div class="input-wrapper">
+                    <span class="input-icon"><i class="fas fa-lock"></i></span>
+                    <input type="password" name="password" placeholder="Nhập mật khẩu (tối thiểu 6 ký tự)" required>
+                </div>
+            </div>
+
+            <!-- Nút đăng ký -->
+            <button type="submit" class="btn-register">
+                <i class="fas fa-user-plus"></i> Đăng ký
+            </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="login-footer">
+            <p>Đã có tài khoản? <a href="Login.html">Đăng nhập</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Lấy tham số 'alert' từ URL (do Servlet gửi về)
+        const urlParams = new URLSearchParams(window.location.search);
+        const alertMsg = urlParams.get('alert');
+        const alertDiv = document.getElementById('alert');
+
+        if (alertMsg) {
+            // Giải mã và hiển thị thông báo lỗi
+            alertDiv.textContent = '⚠️ ' + decodeURIComponent(alertMsg);
+            alertDiv.style.display = 'block';
+
+            // Sau 5 giây tự động ẩn thông báo
+            setTimeout(function() {
+                alertDiv.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+
 </body>
 </html>

@@ -7,6 +7,17 @@
     
     <display-name>JPA Servlet CRUD</display-name>
     
+    <!-- SiteMesh Filter -->
+    <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
     <welcome-file-list>
         <welcome-file>Login.html</welcome-file>
     </welcome-file-list>

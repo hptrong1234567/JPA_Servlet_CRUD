@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -27,122 +23,51 @@
             width: 100%;
             max-width: 420px;
         }
-        .login-header {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-        .login-header h2 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #333;
-        }
-        .login-header p {
-            color: #888;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        .form-group {
-            margin-bottom: 22px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 6px;
-        }
+        .login-header { text-align: center; margin-bottom: 35px; }
+        .login-header h2 { font-size: 28px; font-weight: 700; color: #333; }
+        .login-header p { color: #888; font-size: 14px; margin-top: 5px; }
+        .form-group { margin-bottom: 22px; }
+        .form-group label { display: block; font-weight: 600; font-size: 14px; color: #555; margin-bottom: 6px; }
         .form-group input {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e8e8e8;
-            border-radius: 12px;
-            font-size: 15px;
-            background: #f8f9fa;
-            outline: none;
+            width: 100%; padding: 14px 16px;
+            border: 2px solid #e8e8e8; border-radius: 12px;
+            font-size: 15px; background: #f8f9fa; outline: none;
             transition: all 0.3s ease;
         }
         .form-group input:focus {
-            border-color: #667eea;
-            background: white;
+            border-color: #667eea; background: white;
             box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
         }
         .form-options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             margin: 20px 0 25px;
         }
         .form-options .remember {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            color: #555;
+            display: flex; align-items: center; gap: 8px;
+            cursor: pointer; font-size: 14px; color: #555;
         }
         .form-options .remember input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: #667eea;
-            cursor: pointer;
+            width: 18px; height: 18px; accent-color: #667eea; cursor: pointer;
         }
         .form-options .forgot-link {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
+            color: #667eea; text-decoration: none; font-size: 14px; font-weight: 500;
         }
         .btn-login {
-            width: 100%;
-            padding: 16px;
+            width: 100%; padding: 16px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
+            color: white; border: none; border-radius: 12px;
+            font-size: 17px; font-weight: 600; cursor: pointer;
             transition: all 0.3s ease;
         }
-        .btn-login:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-        .login-footer {
-            text-align: center;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #f0f0f0;
-        }
-        .login-footer p {
-            color: #888;
-            font-size: 14px;
-        }
-        .login-footer a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
-        .alert {
-            padding: 12px 16px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            display: none;
-        }
-        .alert-danger {
-            background: #fee2e2;
-            color: #dc2626;
-            border: 1px solid #fca5a5;
-            display: block;
-        }
+        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4); }
+        .login-footer { text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid #f0f0f0; }
+        .login-footer p { color: #888; font-size: 14px; }
+        .login-footer a { color: #667eea; text-decoration: none; font-weight: 600; }
+        .alert { padding: 12px 16px; border-radius: 10px; margin-bottom: 20px; font-size: 14px; display: none; }
+        .alert-danger { background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; display: block; }
     </style>
 </head>
 <body>
-
     <div class="login-container">
         <div class="login-header">
             <h2>🔐 Đăng nhập</h2>
@@ -164,7 +89,7 @@
                 <label class="remember">
                     <input type="checkbox" name="remember" value="on"> Ghi nhớ đăng nhập
                 </label>
-                <a href="#" class="forgot-link">Quên mật khẩu?</a>
+                <a href="forgot-password.html" class="forgot-link">🔑 Quên mật khẩu?</a>
             </div>
             <button type="submit" class="btn-login">Đăng nhập</button>
         </form>
@@ -184,6 +109,5 @@
             alertDiv.style.display = 'block';
         }
     </script>
-
 </body>
 </html>

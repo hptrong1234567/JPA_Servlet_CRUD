@@ -49,15 +49,20 @@
 
 <div class="sidebar">
     <div class="logo">
-        <h3>Admin Panel</h3>
+        <h3>⚙️ Admin Panel</h3>
     </div>
     <ul class="nav-menu">
         <li><a href="${pageContext.request.contextPath}/admin/home">📊 Dashboard</a></li>
-        <li><a href="${pageContext.request.contextPath}/admin/categories" class="active">📂 Quản lý danh mục</a></li>
-        <li><a href="#">🛒 Quản lý sản phẩm</a></li>
+        <li><a href="${pageContext.request.contextPath}/admin/categories">📂 Quản lý danh mục</a></li>
+        <!-- 🔥 ĐÃ SỬA: Link đúng cho Quản lý sản phẩm -->
+        <li><a href="${pageContext.request.contextPath}/admin/products">🛒 Quản lý sản phẩm</a></li>
         <li><a href="#">👤 Quản lý người dùng</a></li>
         <li><a href="#">📦 Quản lý đơn hàng</a></li>
         <li><a href="#">⚙️ Cài đặt</a></li>
+        <li><a href="${pageContext.request.contextPath}/profile">👤 Hồ sơ của tôi</a></li>
         <li><a href="${pageContext.request.contextPath}/logout">🚪 Đăng xuất</a></li>
+        <li><a href="${pageContext.request.contextPath}/uploadmulti">📤 Upload File (Multipart)</a></li>
+		<li><a href="${pageContext.request.contextPath}/uploadcommons">📤 Upload File (Commons)</a></li>
+        
     </ul>
 </div>

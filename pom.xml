@@ -113,6 +113,42 @@
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.9</version>
         </dependency>
+
+        <!-- ===== THÊM MỚI: GỬI EMAIL ===== -->
+        <!-- JavaMail (gửi email) -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
+        <!-- Javax Activation (hỗ trợ JavaMail) -->
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <!-- Commons FileUpload Jakarta Servlet 6 -->
+		<dependency>
+    		<groupId>org.apache.commons</groupId>
+    		<artifactId>commons-fileupload2-jakarta-servlet6</artifactId>
+    		<version>2.0.0-M2</version>
+		</dependency>
+
+		<!-- Commons IO (hỗ trợ file upload) -->
+		<dependency>
+    		<groupId>commons-io</groupId>
+    		<artifactId>commons-io</artifactId>
+    		<version>2.15.1</version>
+		</dependency>
+		
+		<!-- SiteMesh Jakarta -->
+		<dependency>
+    		<groupId>org.sitemesh</groupId>
+    		<artifactId>sitemesh</artifactId>
+    		<version>3.2.0</version>
+		</dependency>
+        <!-- ===== KẾT THÚC THÊM MỚI ===== -->
     </dependencies>
 
     <build>

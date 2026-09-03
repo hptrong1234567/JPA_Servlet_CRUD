@@ -36,6 +36,17 @@ public class User implements Serializable {
     @Column(name = "createdDate")
     private Date createdDate;
 
+    // 🔥 TRƯỜNG AVATAR (THÊM MỚI)
+    @Column(name = "avatar", columnDefinition = "NVARCHAR(255) NULL")
+    private String avatar;
+
+    @Column(name = "status")
+    private int status;
+
+    @Column(name = "otp_code", columnDefinition = "NVARCHAR(10) NULL")
+    private String otpCode;
+
+    // ✅ CHỈ GIỮ 1 CONSTRUCTOR MẶC ĐỊNH
     public User() {
         super();
     }
@@ -48,8 +59,10 @@ public class User implements Serializable {
         this.email = email;
         this.phone = phone;
         this.roleid = roleid;
+        this.status = 0;
     }
 
+    // ===== GETTERS & SETTERS =====
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -73,4 +86,13 @@ public class User implements Serializable {
 
     public Date getCreatedDate() { return createdDate; }
     public void setCreatedDate(Date createdDate) { this.createdDate = createdDate; }
+
+    public String getAvatar() { return avatar; }
+    public void setAvatar(String avatar) { this.avatar = avatar; }
+
+    public int getStatus() { return status; }
+    public void setStatus(int status) { this.status = status; }
+
+    public String getOtpCode() { return otpCode; }
+    public void setOtpCode(String otpCode) { this.otpCode = otpCode; }
 }

@@ -27,6 +27,11 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "category")
     private List<Video> videos;
 
+    // 🔥🔥🔥 ===== THÊM MỚI: QUAN HỆ 1-n VỚI PRODUCT ===== 🔥🔥🔥
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
+    // 🔥🔥🔥 ===== KẾT THÚC THÊM MỚI ===== 🔥🔥🔥
+
     public Category() {
         super();
     }
@@ -90,6 +95,16 @@ public class Category implements Serializable {
         video.setCategory(null);
         return video;
     }
+
+    // 🔥🔥🔥 ===== THÊM GETTER VÀ SETTER CHO products ===== 🔥🔥🔥
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+    // 🔥🔥🔥 ===== KẾT THÚC ===== 🔥🔥🔥
 
     @Override
     public String toString() {
