@@ -4,15 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký tài khoản</title>
-    <!-- Font Awesome cho icon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="${pageContext.request.contextPath}/js/validation.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -22,52 +16,40 @@
             align-items: center;
             padding: 20px;
         }
-
         .register-container {
             background: white;
-            border-radius: 24px;
+            border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 45px 40px;
+            padding: 50px 40px;
             width: 100%;
             max-width: 460px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
-
         .register-container:hover {
             transform: translateY(-5px);
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
         }
-
         .register-header {
             text-align: center;
             margin-bottom: 30px;
         }
-
         .register-header .icon {
             font-size: 48px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
+            color: #667eea;
+            margin-bottom: 5px;
         }
-
         .register-header h2 {
             font-size: 28px;
             font-weight: 700;
             color: #333;
-            margin-bottom: 4px;
         }
-
         .register-header p {
             color: #888;
             font-size: 14px;
+            margin-top: 5px;
         }
-
         .form-group {
             margin-bottom: 18px;
-            position: relative;
         }
-
         .form-group label {
             display: block;
             font-weight: 600;
@@ -75,56 +57,43 @@
             color: #444;
             margin-bottom: 5px;
         }
-
         .form-group label .required {
             color: #e74c3c;
             margin-left: 2px;
         }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-wrapper .input-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #aaa;
-            font-size: 16px;
-            transition: color 0.3s ease;
-        }
-
-        .input-wrapper input {
+        .form-group input {
             width: 100%;
-            padding: 13px 16px 13px 46px;
+            padding: 12px 16px;
             border: 2px solid #e8e8e8;
-            border-radius: 12px;
+            border-radius: 10px;
             font-size: 15px;
-            transition: all 0.3s ease;
             background: #f8f9fa;
             outline: none;
+            transition: all 0.3s ease;
             font-family: inherit;
         }
-
-        .input-wrapper input:focus {
+        .form-group input:focus {
             border-color: #667eea;
             background: #ffffff;
             box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
         }
-
-        .input-wrapper input:focus + .input-icon {
-            color: #667eea;
-        }
-
-        .input-wrapper input::placeholder {
+        .form-group input::placeholder {
             color: #bbb;
             font-size: 14px;
         }
-
+        .error-message {
+            color: #dc2626;
+            font-size: 13px;
+            margin-top: 5px;
+            padding: 5px 10px;
+            background: #fee2e2;
+            border-radius: 6px;
+            border-left: 4px solid #dc2626;
+            display: none;
+        }
         .btn-register {
             width: 100%;
-            padding: 16px;
+            padding: 15px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
@@ -133,45 +102,34 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            letter-spacing: 1px;
-            margin-top: 6px;
+            margin-top: 8px;
         }
-
         .btn-register:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
-
         .btn-register:active {
             transform: translateY(0);
-            box-shadow: none;
         }
-
         .login-footer {
             text-align: center;
             margin-top: 25px;
             padding-top: 20px;
             border-top: 1px solid #f0f0f0;
         }
-
         .login-footer p {
             color: #888;
             font-size: 14px;
         }
-
         .login-footer a {
             color: #667eea;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
         }
-
         .login-footer a:hover {
             color: #764ba2;
             text-decoration: underline;
         }
-
-        /* Alert message */
         .alert {
             padding: 12px 16px;
             border-radius: 10px;
@@ -180,22 +138,18 @@
             display: none;
             font-weight: 500;
         }
-
         .alert-danger {
             background: #fee2e2;
             color: #dc2626;
             border: 1px solid #fca5a5;
             display: block;
         }
-
         .alert-success {
             background: #dcfce7;
             color: #16a34a;
             border: 1px solid #86efac;
             display: block;
         }
-
-        /* Responsive cho mobile */
         @media (max-width: 480px) {
             .register-container {
                 padding: 30px 20px;
@@ -209,91 +163,123 @@
 <body>
 
     <div class="register-container">
-        <!-- Header -->
         <div class="register-header">
-            <div class="icon"><i class="fas fa-user-plus"></i></div>
+            <div class="icon">📝</div>
             <h2>Đăng ký tài khoản</h2>
-            <p>Điền thông tin để bắt đầu trải nghiệm</p>
+            <p>Điền thông tin để tạo tài khoản mới</p>
         </div>
 
-        <!-- Alert (hiển thị lỗi từ Servlet) -->
         <div id="alert" class="alert alert-danger" style="display: none;"></div>
 
-        <!-- Form đăng ký -->
-        <form action="Register" method="post" id="registerForm">
-
+        <form action="Register" method="post" id="registerForm" onsubmit="return validateRegister()" novalidate>
             <!-- Họ và tên -->
             <div class="form-group">
                 <label>Họ và tên <span class="required">*</span></label>
-                <div class="input-wrapper">
-                    <span class="input-icon"><i class="fas fa-user"></i></span>
-                    <input type="text" name="fullname" placeholder="Nhập họ và tên" required>
-                </div>
+                <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên">
+                <div id="fullnameError" class="error-message"></div>
             </div>
 
             <!-- Tên đăng nhập -->
             <div class="form-group">
                 <label>Tên đăng nhập <span class="required">*</span></label>
-                <div class="input-wrapper">
-                    <span class="input-icon"><i class="fas fa-user-tag"></i></span>
-                    <input type="text" name="username" placeholder="Nhập tên đăng nhập" required>
-                </div>
+                <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập">
+                <div id="usernameError" class="error-message"></div>
             </div>
 
             <!-- Email -->
             <div class="form-group">
                 <label>Email <span class="required">*</span></label>
-                <div class="input-wrapper">
-                    <span class="input-icon"><i class="fas fa-envelope"></i></span>
-                    <input type="email" name="email" placeholder="Nhập email" required>
-                </div>
+                <input type="email" id="email" name="email" placeholder="Nhập email">
+                <div id="emailError" class="error-message"></div>
             </div>
 
             <!-- Số điện thoại -->
             <div class="form-group">
                 <label>Số điện thoại</label>
-                <div class="input-wrapper">
-                    <span class="input-icon"><i class="fas fa-phone"></i></span>
-                    <input type="text" name="phone" placeholder="Nhập số điện thoại (không bắt buộc)">
-                </div>
+                <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại (không bắt buộc)">
+                <div id="phoneError" class="error-message"></div>
             </div>
 
             <!-- Mật khẩu -->
             <div class="form-group">
                 <label>Mật khẩu <span class="required">*</span></label>
-                <div class="input-wrapper">
-                    <span class="input-icon"><i class="fas fa-lock"></i></span>
-                    <input type="password" name="password" placeholder="Nhập mật khẩu (tối thiểu 6 ký tự)" required>
-                </div>
+                <input type="password" id="password" name="password" placeholder="Nhập mật khẩu (tối thiểu 6 ký tự)">
+                <div id="passwordError" class="error-message"></div>
             </div>
 
-            <!-- Nút đăng ký -->
-            <button type="submit" class="btn-register">
-                <i class="fas fa-user-plus"></i> Đăng ký
-            </button>
+            <button type="submit" class="btn-register">Đăng ký</button>
         </form>
 
-        <!-- Footer -->
         <div class="login-footer">
             <p>Đã có tài khoản? <a href="Login.html">Đăng nhập</a></p>
         </div>
     </div>
 
     <script>
-        // Lấy tham số 'alert' từ URL (do Servlet gửi về)
-        const urlParams = new URLSearchParams(window.location.search);
-        const alertMsg = urlParams.get('alert');
-        const alertDiv = document.getElementById('alert');
+        // Hiển thị alert từ URL (do Servlet gửi về)
+        var urlParams = new URLSearchParams(window.location.search);
+        var alertMsg = urlParams.get('alert');
+        var alertDiv = document.getElementById('alert');
 
         if (alertMsg) {
-            // Giải mã và hiển thị thông báo lỗi
-            alertDiv.textContent = '⚠️ ' + decodeURIComponent(alertMsg);
+            alertDiv.textContent = decodeURIComponent(alertMsg);
             alertDiv.style.display = 'block';
+        }
 
-            // Sau 5 giây tự động ẩn thông báo
-            setTimeout(function() {
-                alertDiv.style.display = 'none';
-            }, 5000);
+        // ===== HÀM VALIDATION =====
+        function validateRegister() {
+            var fullname = document.getElementById('fullname').value;
+            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var password = document.getElementById('password').value;
+            var isValid = true;
+
+            // Ẩn lỗi cũ
+            resetErrors(['fullnameError', 'usernameError', 'emailError', 'phoneError', 'passwordError']);
+
+            // Kiểm tra họ tên
+            if (isEmpty(fullname)) {
+                showError('fullnameError', '⚠️ Vui lòng nhập họ và tên!');
+                isValid = false;
+            }
+
+            // Kiểm tra username
+            if (isEmpty(username)) {
+                showError('usernameError', '⚠️ Vui lòng nhập tên đăng nhập!');
+                isValid = false;
+            }
+
+            // Kiểm tra email
+            if (isEmpty(email)) {
+                showError('emailError', '⚠️ Vui lòng nhập email!');
+                isValid = false;
+            } else if (!isValidEmail(email)) {
+                showError('emailError', '⚠️ Email không đúng định dạng!');
+                isValid = false;
+            }
+
+            // Kiểm tra số điện thoại (nếu có)
+            if (!isEmpty(phone) && !isValidPhone(phone)) {
+                showError('phoneError', '⚠️ Số điện thoại phải có 10-11 chữ số!');
+                isValid = false;
+            }
+
+            // Kiểm tra mật khẩu
+            if (isEmpty(password)) {
+                showError('passwordError', '⚠️ Vui lòng nhập mật khẩu!');
+                isValid = false;
+            } else if (!minLength(password, 6)) {
+                showError('passwordError', '⚠️ Mật khẩu phải có ít nhất 6 ký tự!');
+                isValid = false;
+            }
+
+            // Nếu form không hợp lệ, cuộn lên đầu để hiển thị lỗi
+            if (!isValid) {
+                document.querySelector('.register-container').scrollIntoView({ behavior: 'smooth' });
+            }
+
+            return isValid;
         }
     </script>
 

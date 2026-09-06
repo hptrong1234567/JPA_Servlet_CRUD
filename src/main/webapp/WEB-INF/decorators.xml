@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/decorators">
+    <!-- Decorator Bootstrap cho tất cả trang -->
     <decorator name="main" page="main.jsp">
         <pattern>/*</pattern>
     </decorator>
+    
+    <!-- Không áp dụng decorator cho Login, Register,... -->
     <decorator name="none" page="none.jsp">
         <pattern>/Login.html</pattern>
         <pattern>/register.html</pattern>

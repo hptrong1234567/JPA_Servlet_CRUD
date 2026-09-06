@@ -62,7 +62,6 @@
         .welcome-card h2 { color: #2c3e50; font-size: 24px; }
         .welcome-card p { color: #7f8c8d; font-size: 16px; margin-top: 5px; }
         
-        /* 🔥🔥🔥 ===== THÊM MỚI: CSS CHO SẢN PHẨM ===== 🔥🔥🔥 */
         .section-title { 
             font-size: 24px; 
             color: #2c3e50; 
@@ -133,7 +132,6 @@
             transition: background 0.3s;
         }
         .view-all a:hover { background: #2980b9; }
-        /* 🔥🔥🔥 ===== KẾT THÚC THÊM MỚI ===== 🔥🔥🔥 */
         
         .footer {
             background: white;
@@ -156,7 +154,6 @@
 <body>
 
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <h1>🏠 Trang chủ</h1>
             <div class="header-right">
@@ -168,7 +165,6 @@
             </div>
         </div>
 
-        <!-- Welcome Card -->
         <div class="welcome-card">
             <h2>👋 Chào mừng bạn đến với trang chủ!</h2>
             <p>Bạn đã đăng nhập thành công với tư cách là <strong>${sessionScope.account.fullname}</strong></p>
@@ -178,7 +174,6 @@
             </p>
         </div>
 
-        <!-- 🔥🔥🔥 ===== THÊM MỚI: DANH SÁCH SẢN PHẨM MỚI NHẤT ===== 🔥🔥🔥 -->
         <h2 class="section-title">🆕 Sản phẩm mới nhất</h2>
         
         <c:choose>
@@ -208,9 +203,7 @@
                 </div>
             </c:otherwise>
         </c:choose>
-        <!-- 🔥🔥🔥 ===== KẾT THÚC THÊM MỚI ===== 🔥🔥🔥 -->
 
-        <!-- Footer -->
         <div class="footer">
             <p>© 2026 JPA Servlet CRUD</p>
         </div>

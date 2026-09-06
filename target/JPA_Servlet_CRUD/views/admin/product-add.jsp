@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Thêm sản phẩm</title>
+    <script src="${pageContext.request.contextPath}/js/validation.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -16,9 +17,8 @@
         .main-content { margin-left: 260px; flex: 1; padding: 20px; }
         .header {
             background: white; padding: 20px 30px; border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         .header h1 { color: #2c3e50; font-size: 24px; }
         .header-right a { text-decoration: none; font-weight: 600; padding: 8px 16px; border-radius: 6px; }
@@ -38,10 +38,18 @@
             font-size: 15px; outline: none;
             transition: border-color 0.3s;
         }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-            border-color: #3498db;
-        }
+        .form-group input:focus, .form-group select:focus { border-color: #3498db; }
         .form-group textarea { min-height: 100px; resize: vertical; }
+        .error-message {
+            color: #dc2626;
+            font-size: 13px;
+            margin-top: 5px;
+            padding: 5px 10px;
+            background: #fee2e2;
+            border-radius: 6px;
+            border-left: 4px solid #dc2626;
+            display: none;
+        }
         .form-actions { display: flex; gap: 15px; margin-top: 10px; }
         .btn-submit { background: #2ecc71; color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: 600; cursor: pointer; }
         .btn-submit:hover { background: #27ae60; }
@@ -50,7 +58,10 @@
         .btn-cancel { background: #e74c3c; color: white; border: none; padding: 12px 30px; border-radius: 8px; font-weight: 600; text-decoration: none; }
         .btn-cancel:hover { background: #c0392b; }
         
-        .sidebar { width: 260px; background: #2c3e50; color: white; padding: 20px 0; position: fixed; height: 100vh; overflow-y: auto; top: 0; left: 0; }
+        .sidebar {
+            width: 260px; background: #2c3e50; color: white; padding: 20px 0;
+            position: fixed; height: 100vh; overflow-y: auto; top: 0; left: 0;
+        }
         .sidebar .logo { text-align: center; padding: 20px; border-bottom: 1px solid #34495e; }
         .sidebar .logo h3 { color: #ecf0f1; margin: 0; }
         .sidebar .nav-menu { list-style: none; padding: 0; margin: 0; }
@@ -62,7 +73,7 @@
 </head>
 <body>
 
-    <jsp:include page="layout/sidebar.jsp" />
+    <jsp:include page="/views/admin/layout/sidebar.jsp" />
 
     <div class="main-content">
         <div class="header">
@@ -74,18 +85,21 @@
         </div>
 
         <div class="form-container">
-            <form action="${pageContext.request.contextPath}/admin/product/insert" method="post">
+            <form action="${pageContext.request.contextPath}/admin/product/insert" method="post" onsubmit="return validateProduct()">
                 <div class="form-group">
                     <label>Tên sản phẩm <span class="required">*</span></label>
-                    <input type="text" name="productName" placeholder="Nhập tên sản phẩm..." required>
+                    <input type="text" id="productName" name="productName" placeholder="Nhập tên sản phẩm...">
+                    <div id="nameError" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label>Giá <span class="required">*</span></label>
-                    <input type="number" step="1000" name="price" placeholder="Nhập giá sản phẩm..." required>
+                    <input type="number" id="price" name="price" placeholder="Nhập giá sản phẩm...">
+                    <div id="priceError" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label>Số lượng</label>
-                    <input type="number" name="quantity" placeholder="Nhập số lượng..." value="0">
+                    <input type="number" id="quantity" name="quantity" placeholder="Nhập số lượng..." value="0">
+                    <div id="quantityError" class="error-message"></div>
                 </div>
                 <div class="form-group">
                     <label>Mô tả</label>
@@ -119,6 +133,37 @@
             </form>
         </div>
     </div>
+
+    <script>
+        function validateProduct() {
+            var productName = document.getElementById('productName').value;
+            var price = document.getElementById('price').value;
+            var quantity = document.getElementById('quantity').value;
+            var isValid = true;
+
+            resetErrors(['nameError', 'priceError', 'quantityError']);
+
+            if (isEmpty(productName)) {
+                showError('nameError', '⚠️ Vui lòng nhập tên sản phẩm!');
+                isValid = false;
+            }
+
+            if (isEmpty(price)) {
+                showError('priceError', '⚠️ Vui lòng nhập giá sản phẩm!');
+                isValid = false;
+            } else if (!isPositiveNumber(price)) {
+                showError('priceError', '⚠️ Giá sản phẩm phải lớn hơn 0!');
+                isValid = false;
+            }
+
+            if (!isEmpty(quantity) && (parseInt(quantity) < 0 || isNaN(quantity))) {
+                showError('quantityError', '⚠️ Số lượng không hợp lệ!');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
 
 </body>
 </html>
